@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:netflix_or_hotstar_clone/screens/forget_password.dart';
+import 'package:netflix_or_hotstar_clone/screens/home.dart';
 import '../constants/bg_color.dart';
 
 class Login extends StatefulWidget {
@@ -14,7 +16,9 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      body: Center(
+      body: Container(
+        padding: EdgeInsets.only(left: 20,right: 20),
+        child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -99,15 +103,33 @@ class _LoginState extends State<Login> {
                     },
                   )
                 ,Padding(padding: EdgeInsets.only(top: 10)),
-                Container(
+                InkWell(
+                  child: Container(
                   alignment: Alignment.centerRight,
                   padding: EdgeInsets.only(right: 9),
-                  child: Text("Forget Password", style: TextStyle(color: txtColor,)),
+                  child: Text("Forget Password", style: TextStyle(color: txtColor,decorationStyle: TextDecorationStyle.dotted)),
+                ),
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context){
+                    return ForgetPassword();
+                  }));
+                },
                 ),
                 Padding(padding: EdgeInsets.only(top: 25)),
                 ElevatedButton(onPressed: (){
                   _myKey.currentState!.validate();
-                }, child: Text("Submit",style: TextStyle(fontSize: 20),), style: ButtonStyle(minimumSize: MaterialStateProperty.all(Size(400, 50))),),
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return Home();
+                  },));
+                }, child: Text("Submit",style: TextStyle(fontSize: 20),), style: ButtonStyle(
+                  minimumSize: MaterialStateProperty.all(Size(400, 50)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    )
+                  ),
+                  ),),
                 Padding(padding: EdgeInsets.only(top: 30)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -123,9 +145,36 @@ class _LoginState extends State<Login> {
                   child: Row(
                   mainAxisAlignment : MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    ElevatedButton(onPressed: (){}, child: ClipRect(child: Image.asset("assets/google1.png",width: 50,height: 30),),style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.grey),)),
-                    ElevatedButton(onPressed: (){}, child: ClipRect(child: Image.asset("assets/facebook1.png",width: 50,height: 30),),style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.grey))),
-                    ElevatedButton(onPressed: (){}, child: ClipRect(child: Image.asset("assets/apple1.png",width: 50,height: 30,color: txtColor,),),style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.grey))),
+                    Card(
+                      color: Color.fromARGB(255, 206, 205, 205),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        padding: EdgeInsets.all(8),
+                        child: ClipRect(child: Image.asset("assets/google1.png",width: 50,height: 30),),
+                      ),
+                    ),
+                    Card(
+                      color: Color.fromARGB(255, 206, 205, 205),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        padding: EdgeInsets.all(8),
+                        child: ClipRect(child: Image.asset("assets/facebook1.png",width: 50,height: 30),),
+                      ),
+                    ),
+                    Card(
+                      color: Color.fromARGB(255, 206, 205, 205),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        padding: EdgeInsets.all(8),
+                        child: ClipRect(child: Image.asset("assets/apple1.png",width: 50,height: 30,color: txtColor,),),
+                      ),
+                    ),
                   ],
                 ),
                 ),
@@ -144,6 +193,7 @@ class _LoginState extends State<Login> {
             )
           ],
         ),
+      ),
       ),
     );
   }

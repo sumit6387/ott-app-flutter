@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:netflix_or_hotstar_clone/common/slider.dart';
 import 'package:netflix_or_hotstar_clone/constants/bg_color.dart';
 import 'package:netflix_or_hotstar_clone/drawers/drawer.dart';
 
@@ -30,8 +31,24 @@ class _HomeState extends State<Home> {
         ],
       ),),
       body: Container(
-        child: Center(
-          child: Text("Home",style: TextStyle(fontSize: 20,color: txtColor),),
+        child: Column(
+          children: <Widget>[
+            Container(
+              child: Column(
+                children: [
+                  Padding(padding: EdgeInsets.all(10)),
+                  MYSlider(height: 160,isInfiniteScroll : true),
+                  Padding(padding: EdgeInsets.all(10)),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Continue Watching",style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500,color: txtColor),),
+                  ),
+                  Padding(padding: EdgeInsets.all(10)),
+                  
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );
